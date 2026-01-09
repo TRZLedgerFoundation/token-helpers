@@ -1,4 +1,4 @@
-# solana-token
+# Token-helpers
 
 A set of helpers and wrappers around multiple Solana token libraries that enable developers to create token accounts with one-liners, supporting different token standards including Token Program (TokenKeg), Token-2022, and Token-ACL.
 
@@ -11,9 +11,9 @@ A set of helpers and wrappers around multiple Solana token libraries that enable
 ## Installation
 
 ```bash
-npm install solana-token
+npm install @solana/token-helpers
 # or
-pnpm add solana-token
+pnpm add @solana/token-helpers
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ pnpm add solana-token
 ### Create and Confirm Associated Token Account
 
 ```typescript
-import { createAndConfirmAssociatedTokenAccount } from 'solana-token';
+import { createAndConfirmAssociatedTokenAccount } from '@solana/token-helpers';
 
 const { signature, associatedTokenAddress } = await createAndConfirmAssociatedTokenAccount(
   rpc,
@@ -35,7 +35,7 @@ const { signature, associatedTokenAddress } = await createAndConfirmAssociatedTo
 ### Create Associated Token Account (without confirmation)
 
 ```typescript
-import { createAssociatedTokenAccount } from 'solana-token';
+import { createAssociatedTokenAccount } from '@solana/token-helpers';
 
 const { signature, associatedTokenAddress } = await createAssociatedTokenAccount(
   rpc,
@@ -48,7 +48,7 @@ const { signature, associatedTokenAddress } = await createAssociatedTokenAccount
 ### Get Instructions Only
 
 ```typescript
-import { createAssociatedTokenAccountInstructions } from 'solana-token';
+import { createAssociatedTokenAccountInstructions } from '@solana/token-helpers';
 
 const { instructions, associatedTokenAddress } = await createAssociatedTokenAccountInstructions(
   rpc,
