@@ -36,7 +36,7 @@ jobs:
       - name: Install Dependencies
         uses: ./.github/workflows/actions/install-dependencies
         with:
-          solana_version: "2.3.0"
+          trezoa_version: "2.3.0"
 
       - name: Lint
         run: pnpm lint
@@ -78,7 +78,7 @@ jobs:
         run: |
           pnpm changeset version --snapshot canary
           pnpm build
-          pnpm changeset publish --tag canary --filter @solana/token-helpers
+          pnpm changeset publish --tag canary --filter @trezoa/token-helpers
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

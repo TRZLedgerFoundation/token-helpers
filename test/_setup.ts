@@ -1,4 +1,4 @@
-import { getCreateAccountInstruction } from "@solana-program/system";
+import { getCreateAccountInstruction } from "@trezoa-program/system";
 import {
   Address,
   BaseTransactionMessage,
@@ -6,8 +6,8 @@ import {
   Instruction,
   Rpc,
   RpcSubscriptions,
-  SolanaRpcApi,
-  SolanaRpcSubscriptionsApi,
+  TrezoaRpcApi,
+  TrezoaRpcSubscriptionsApi,
   TransactionMessageWithBlockhashLifetime,
   TransactionMessageWithFeePayer,
   TransactionSigner,
@@ -15,8 +15,8 @@ import {
   appendTransactionMessageInstructions,
   assertIsSendableTransaction,
   assertIsTransactionWithBlockhashLifetime,
-  createSolanaRpc,
-  createSolanaRpcSubscriptions,
+  createTrezoaRpc,
+  createTrezoaRpcSubscriptions,
   createTransactionMessage,
   generateKeyPairSigner,
   getSignatureFromTransaction,
@@ -27,7 +27,7 @@ import {
   setTransactionMessageLifetimeUsingBlockhash,
   signTransactionMessageWithSigners,
   some,
-} from "@solana/kit";
+} from "@trezoa/kit";
 import {
   AccountState,
   Extension,
@@ -42,8 +42,8 @@ import {
   getPostInitializeInstructionsForTokenExtensions,
   getPreInitializeInstructionsForMintExtensions,
   getTokenSize,
-} from "@solana-program/token-2022";
-import { TOKEN_PROGRAM_ADDRESS } from "@solana-program/token";
+} from "@trezoa-program/token-2022";
+import { TOKEN_PROGRAM_ADDRESS } from "@trezoa-program/token";
 import {
   findMintConfigPda,
   findThawExtraMetasAccountPda,
@@ -61,17 +61,17 @@ import {
 } from "@token-acl/abl-sdk";
 
 type Client = {
-  rpc: Rpc<SolanaRpcApi>;
-  rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>;
+  rpc: Rpc<TrezoaRpcApi>;
+  rpcSubscriptions: RpcSubscriptions<TrezoaRpcSubscriptionsApi>;
 };
 
-export const createDefaultSolanaClient = (): Client => {
-  const rpc = createSolanaRpc("http://127.0.0.1:8899");
-  const rpcSubscriptions = createSolanaRpcSubscriptions("ws://127.0.0.1:8900");
+export const createDefaultTrezoaClient = (): Client => {
+  const rpc = createTrezoaRpc("http://127.0.0.1:8899");
+  const rpcSubscriptions = createTrezoaRpcSubscriptions("ws://127.0.0.1:8900");
   return { rpc, rpcSubscriptions };
 };
 
-export const generateKeyPairSignerWithSol = async (
+export const generateKeyPairSignerWithTrz = async (
   client: Client,
   putativeLamports: bigint = 1_000_000_000n,
 ) => {

@@ -1,7 +1,7 @@
 {
-  "name": "@solana/token-helpers",
+  "name": "@trezoa/token-helpers",
   "version": "0.1.1",
-  "description": "A set of helpers and wrappers around multiple Solana token libraries that enable developers to create token accounts with one-liners, supporting different token standards including Token Program (TokenKeg), Token-2022, and Token-ACL.",
+  "description": "A set of helpers and wrappers around multiple Trezoa token libraries that enable developers to create token accounts with one-liners, supporting different token standards including Token Program (TokenKeg), Token-2022, and Token-ACL.",
   "sideEffects": false,
   "module": "./dist/src/index.mjs",
   "main": "./dist/src/index.js",
@@ -43,10 +43,10 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/solana-foundation/token-helpers"
+    "url": "https://github.com/trzledgerfoundation/token-helpers"
   },
   "bugs": {
-    "url": "https://github.com/solana-foundation/token-helpers/issues"
+    "url": "https://github.com/trzledgerfoundation/token-helpers/issues"
   },
   "homepage": "",
   "devDependencies": {
@@ -54,8 +54,8 @@
     "@changesets/cli": "^2.29.5",
     "@ava/typescript": "^6.0.0",
     "@eslint/js": "^9.39.1",
-    "@solana-program/system": "^0.10.0",
-    "@solana/eslint-config-solana": "^3.0.3",
+    "@trezoa-program/system": "^0.10.0",
+    "@trezoa/eslint-config-trezoa": "^3.0.3",
     "@types/node": "^24",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
@@ -82,9 +82,9 @@
   },
   "packageManager": "pnpm@10.20.0",
   "dependencies": {
-    "@solana-program/token": "0.9.0",
-    "@solana-program/token-2022": "0.6.1",
-    "@solana/kit": "^5.0.0",
+    "@trezoa-program/token": "0.9.0",
+    "@trezoa-program/token-2022": "0.6.1",
+    "@trezoa/kit": "^5.0.0",
     "@token-acl/abl-sdk": "^0.2.0",
     "@token-acl/sdk": "^0.2.7"
   }

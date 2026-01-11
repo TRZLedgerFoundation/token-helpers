@@ -19,8 +19,8 @@ if [ -n "$PID" ]; then
   sleep 1
 fi
 
-echo "Starting Solana test validator..."
-solana-test-validator "${ARGS[@]}" &
+echo "Starting Trezoa test validator..."
+trezoa-test-validator "${ARGS[@]}" &
 VALIDATOR_PID=$!
 
 # Wait for test validator to move past slot 0.
@@ -32,7 +32,7 @@ for i in {1..8}; do
     exit 1
   fi
 
-  SLOT=$(solana slot -ul 2>/dev/null)
+  SLOT=$(trezoa slot -ul 2>/dev/null)
   if [[ "$SLOT" =~ ^[0-9]+$ ]] && [ "$SLOT" -gt 0 ]; then
     echo -e "\nTest validator is ready. Slot: $SLOT"
     exit 0

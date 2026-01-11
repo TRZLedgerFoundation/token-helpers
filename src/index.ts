@@ -1,14 +1,14 @@
 import {
   ASSOCIATED_TOKEN_PROGRAM_ADDRESS,
   TOKEN_PROGRAM_ADDRESS,
-} from "@solana-program/token";
+} from "@trezoa-program/token";
 import {
   findAssociatedTokenPda,
   getMintDecoder,
   TOKEN_2022_PROGRAM_ADDRESS,
   getCreateAssociatedTokenInstruction,
   getCreateAssociatedTokenIdempotentInstruction,
-} from "@solana-program/token-2022";
+} from "@trezoa-program/token-2022";
 import {
   Address,
   appendTransactionMessageInstructions,
@@ -16,7 +16,7 @@ import {
   fetchEncodedAccount,
   getSignatureFromTransaction,
   Instruction,
-  isSolanaError,
+  isTrezoaError,
   pipe,
   Rpc,
   RpcSubscriptions,
@@ -26,13 +26,13 @@ import {
   setTransactionMessageFeePayerSigner,
   setTransactionMessageLifetimeUsingBlockhash,
   signTransactionMessageWithSigners,
-  SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
-  SolanaRpcApi,
-  SolanaRpcSubscriptionsApi,
+  TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
+  TrezoaRpcApi,
+  TrezoaRpcSubscriptionsApi,
   Transaction,
   TransactionSigner,
   TransactionWithBlockhashLifetime,
-} from "@solana/kit";
+} from "@trezoa/kit";
 import {
   isTokenAclMintFromMint,
   createThawPermissionlessInstructionFromMint,
@@ -48,7 +48,7 @@ import {
  * @returns An object containing the instructions and the associated token address
  */
 export async function createAssociatedTokenAccountInstructions(
-  rpc: Rpc<SolanaRpcApi>,
+  rpc: Rpc<TrezoaRpcApi>,
   payer: TransactionSigner,
   owner: Address,
   mintAddress: Address,
@@ -141,7 +141,7 @@ export async function createAssociatedTokenAccountInstructions(
  * @returns An object containing the signature and the associated token address
  */
 export async function createAssociatedTokenAccount(
-  rpc: Rpc<SolanaRpcApi>,
+  rpc: Rpc<TrezoaRpcApi>,
   payer: TransactionSigner,
   owner: Address,
   mint: Address,
@@ -174,9 +174,9 @@ export async function createAssociatedTokenAccount(
     await sendTransaction(signedTransaction, { commitment: "confirmed" });
   } catch (e) {
     if (
-      isSolanaError(
+      isTrezoaError(
         e,
-        SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
+        TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
       )
     ) {
       throw new Error("The transaction failed in simulation", e.cause);
@@ -201,8 +201,8 @@ export async function createAssociatedTokenAccount(
  * @returns An object containing the signature and the associated token address
  */
 export async function createAndConfirmAssociatedTokenAccount(
-  rpc: Rpc<SolanaRpcApi>,
-  rpcSubscriptions: RpcSubscriptions<SolanaRpcSubscriptionsApi>,
+  rpc: Rpc<TrezoaRpcApi>,
+  rpcSubscriptions: RpcSubscriptions<TrezoaRpcSubscriptionsApi>,
   payer: TransactionSigner,
   owner: Address,
   mint: Address,
@@ -243,9 +243,9 @@ export async function createAndConfirmAssociatedTokenAccount(
     );
   } catch (e) {
     if (
-      isSolanaError(
+      isTrezoaError(
         e,
-        SOLANA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
+        TREZOA_ERROR__JSON_RPC__SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE,
       )
     ) {
       throw new Error("The transaction failed in simulation", e.cause);

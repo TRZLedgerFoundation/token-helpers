@@ -15,8 +15,8 @@ inputs:
   rustfmt:
     description: Install Rustfmt if `true`. Defaults to `false`.
     required: false
-  solana_version:
-    description: "Solana version to install (leave empty to skip)"
+  trezoa_version:
+    description: "Trezoa version to install (leave empty to skip)"
     required: false
     default: ""
 
@@ -52,14 +52,14 @@ runs:
         toolchain: ${{ env.TOOLCHAIN_LINT }}
         components: clippy
 
-    - name: Setup Solana version environment variable
-      if: inputs.solana_version != ''
+    - name: Setup Trezoa version environment variable
+      if: inputs.trezoa_version != ''
       shell: bash
       run: |
-        echo "SOLANA_VERSION=${{ inputs.solana_version }}" >> $GITHUB_ENV
+        echo "TREZOA_VERSION=${{ inputs.trezoa_version }}" >> $GITHUB_ENV
 
-    - name: Install Solana
-      if: inputs.solana_version != ''
-      uses: solana-developers/github-actions/setup-all@v0.2.7
+    - name: Install Trezoa
+      if: inputs.trezoa_version != ''
+      uses: trezoa-developers/github-actions/setup-all@v0.2.7
       with:
-        solana_version: ${{ inputs.solana_version }}
+        trezoa_version: ${{ inputs.trezoa_version }}

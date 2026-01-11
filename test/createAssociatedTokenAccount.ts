@@ -2,30 +2,30 @@ import {
   assertAccountExists,
   fetchEncodedAccount,
   generateKeyPairSigner,
-} from "@solana/kit";
+} from "@trezoa/kit";
 import test from "ava";
 import {
   AccountState,
   TOKEN_2022_PROGRAM_ADDRESS,
   Token,
   getTokenDecoder as getTokenDecoder2022,
-} from "@solana-program/token-2022";
+} from "@trezoa-program/token-2022";
 import {
-  createDefaultSolanaClient,
+  createDefaultTrezoaClient,
   createMint,
   createMint2022,
   createMintAcl,
-  generateKeyPairSignerWithSol,
+  generateKeyPairSignerWithTrz,
 } from "./_setup";
-import { TOKEN_PROGRAM_ADDRESS, getTokenDecoder } from "@solana-program/token";
+import { TOKEN_PROGRAM_ADDRESS, getTokenDecoder } from "@trezoa-program/token";
 import { createAndConfirmAssociatedTokenAccount } from "../src";
 
 test("it creates tokenkeg associated token account", async (t) => {
   t.timeout(30000);
   // Given a mint account and a token account.
-  const client = createDefaultSolanaClient();
+  const client = createDefaultTrezoaClient();
   const [payer, mintAuthority, owner] = await Promise.all([
-    generateKeyPairSignerWithSol(client),
+    generateKeyPairSignerWithTrz(client),
     generateKeyPairSigner(),
     generateKeyPairSigner(),
   ]);
@@ -53,9 +53,9 @@ test("it creates tokenkeg associated token account", async (t) => {
 test("it creates tokenZ associated token account", async (t) => {
   t.timeout(30000);
   // Given a mint account and a token account.
-  const client = createDefaultSolanaClient();
+  const client = createDefaultTrezoaClient();
   const [payer, mintAuthority, owner] = await Promise.all([
-    generateKeyPairSignerWithSol(client),
+    generateKeyPairSignerWithTrz(client),
     generateKeyPairSigner(),
     generateKeyPairSigner(),
   ]);
@@ -87,10 +87,10 @@ test("it creates tokenZ associated token account", async (t) => {
 test("it creates token-acl associated token account", async (t) => {
   t.timeout(30000);
   // Given a mint account and a token account.
-  const client = createDefaultSolanaClient();
+  const client = createDefaultTrezoaClient();
   const [payer, mintAuthority, owner] = await Promise.all([
-    generateKeyPairSignerWithSol(client),
-    generateKeyPairSignerWithSol(client),
+    generateKeyPairSignerWithTrz(client),
+    generateKeyPairSignerWithTrz(client),
     generateKeyPairSigner(),
   ]);
   const mint = await createMintAcl(client, payer, mintAuthority);

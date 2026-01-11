@@ -36,7 +36,7 @@ jobs:
       - name: Install Dependencies
         uses: ./.github/workflows/actions/install-dependencies
         with:
-          solana_version: "2.3.0"
+          trezoa_version: "2.3.0"
 
       - name: Build workspace
         run: pnpm build

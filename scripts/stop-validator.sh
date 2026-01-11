@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pkill -f solana-test-validator
+pkill -f trezoa-test-validator
